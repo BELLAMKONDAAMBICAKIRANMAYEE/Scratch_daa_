@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 import Home from "./pages/Home";
@@ -19,8 +19,10 @@ function Layout() {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
 
+  // ✅ FIXED
   const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname.startsWith("/login") ||
+    location.pathname.startsWith("/signup");
 
   return (
     <div className="app-layout">
@@ -41,8 +43,8 @@ function Layout() {
         <div className="content">
           <Routes>
 
-            {/* ✅ Default = Signup */}
-            <Route path="/" element={<Signup />} />
+            {/* ✅ Redirect root */}
+            <Route path="/" element={<Navigate to="/signup" />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
