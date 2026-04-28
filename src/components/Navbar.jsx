@@ -84,7 +84,10 @@ function Navbar({ toggleSidebar }) {
   .right-section {
     display: none; /* hide user + logout */
   }
-
+   .mobile-menu{
+   width:380px;
+   max-width:100%;
+   }  
   .mobile-menu-btn {
     display: block; /* show ☰ */
     margin-left: auto;

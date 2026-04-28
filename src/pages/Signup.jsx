@@ -31,14 +31,14 @@ body {
   font-family: Arial, sans-serif;
   background: #0f172a; /* dark navy */
   display: flex;
-  justify-content: center;
+  
   align-items: center;
   min-height: 100vh;
 }
 
 /* ===== FORM ===== */
 form {
-  width: 400px;
+  width: 700px;
   max-width: 95%; /* 🔥 makes it responsive */
   padding: 30px;
 
@@ -50,7 +50,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+justify-content:center;
   animation: fadeIn 0.6s ease;
 }
 
@@ -131,6 +131,8 @@ a:hover {
 /* ===== MOBILE FIXES ===== */
 @media (max-width: 480px) {
   form {
+  width: 300px;
+  max-width: 85%;
     padding: 20px;
     border-radius: 10px;
   }
@@ -153,8 +155,10 @@ a:hover {
 /* ===== ANIMATION ===== */
 @keyframes fadeIn {
   from {
+  
     opacity: 0;
     transform: translateY(-15px);
+    
   }
   to {
     opacity: 1;
