@@ -1,0 +1,436 @@
+[
+  {
+    "topicId": 1,
+    "title": "Introduction to Python",
+    "quiz": [
+      {
+        "question": "Python is a ___ language?",
+        "options": ["Compiled", "Interpreted", "Machine", "Assembly"],
+        "answer": "Interpreted"
+      },
+      {
+        "question": "Python is ___ typed?",
+        "options": ["Static", "Strong", "Dynamic", "Weak"],
+        "answer": "Dynamic"
+      },
+      {
+        "question": "Which symbol is NOT required in Python?",
+        "options": ["Semicolon", "Colon", "Indentation", "Parentheses"],
+        "answer": "Semicolon"
+      },
+      {
+        "question": "Python executes code ___?",
+        "options": ["Line by line", "All at once", "Backward", "Randomly"],
+        "answer": "Line by line"
+      },
+      {
+        "question": "Which is a Python feature?",
+        "options": ["Readable", "Complex syntax", "Low-level only", "Manual memory"],
+        "answer": "Readable"
+      }
+    ]
+  },
+  {
+    "topicId": 2,
+    "title": "Variables & Data Types",
+    "quiz": [
+      {
+        "question": "Which is valid variable?",
+        "options": ["1x", "x1", "@x", "#x"],
+        "answer": "x1"
+      },
+      {
+        "question": "Python variable type is decided by?",
+        "options": ["User", "Compiler", "Value", "OS"],
+        "answer": "Value"
+      },
+      {
+        "question": "Which is NOT a data type?",
+        "options": ["int", "float", "char", "bool"],
+        "answer": "char"
+      },
+      {
+        "question": "x=None means?",
+        "options": ["0", "Empty", "Null value", "False"],
+        "answer": "Null value"
+      },
+      {
+        "question": "Which function shows type?",
+        "options": ["type()", "id()", "len()", "print()"],
+        "answer": "type()"
+      }
+    ]
+  },
+  {
+    "topicId": 3,
+    "title": "Operators",
+    "quiz": [
+      {
+        "question": "5//2 gives?",
+        "options": ["2", "2.5", "3", "1"],
+        "answer": "2"
+      },
+      {
+        "question": "2**3 equals?",
+        "options": ["6", "8", "9", "5"],
+        "answer": "8"
+      },
+      {
+        "question": "Which is comparison operator?",
+        "options": ["+", "-", "==", "*"],
+        "answer": "=="
+      },
+      {
+        "question": "True and False gives?",
+        "options": ["True", "False", "Error", "None"],
+        "answer": "False"
+      },
+      {
+        "question": "% operator means?",
+        "options": ["Multiply", "Divide", "Remainder", "Power"],
+        "answer": "Remainder"
+      }
+    ]
+  },
+  {
+    "topicId": 4,
+    "title": "Conditional Statements",
+    "quiz": [
+      {
+        "question": "if statement checks?",
+        "options": ["Loop", "Condition", "Variable", "Function"],
+        "answer": "Condition"
+      },
+      {
+        "question": "else runs when?",
+        "options": ["True", "False", "Always", "Never"],
+        "answer": "False"
+      },
+      {
+        "question": "Python uses ___ for blocks?",
+        "options": ["{}", "()", "Indentation", ";"],
+        "answer": "Indentation"
+      },
+      {
+        "question": "if x means?",
+        "options": ["Check zero", "Check truth value", "Error", "Loop"],
+        "answer": "Check truth value"
+      },
+      {
+        "question": "Ternary operator uses?",
+        "options": ["if else in one line", "loop", "function", "class"],
+        "answer": "if else in one line"
+      }
+    ]
+  },
+  {
+    "topicId": 5,
+    "title": "Loops",
+    "quiz": [
+      {
+        "question": "for loop used for?",
+        "options": ["Condition", "Iteration", "Error", "Class"],
+        "answer": "Iteration"
+      },
+      {
+        "question": "break does?",
+        "options": ["Skip", "Stop loop", "Restart", "None"],
+        "answer": "Stop loop"
+      },
+      {
+        "question": "continue does?",
+        "options": ["Stop", "Skip iteration", "End program", "Restart"],
+        "answer": "Skip iteration"
+      },
+      {
+        "question": "while loop runs until?",
+        "options": ["True", "False", "End", "Start"],
+        "answer": "False"
+      },
+      {
+        "question": "Infinite loop caused by?",
+        "options": ["Condition always true", "Break", "Continue", "Pass"],
+        "answer": "Condition always true"
+      }
+    ]
+  },
+  {
+    "topicId": 6,
+    "title": "Functions",
+    "quiz": [
+      {
+        "question": "Function defined using?",
+        "options": ["func", "define", "def", "fn"],
+        "answer": "def"
+      },
+      {
+        "question": "Return keyword used for?",
+        "options": ["Loop", "Output", "Condition", "Input"],
+        "answer": "Output"
+      },
+      {
+        "question": "Lambda is?",
+        "options": ["Class", "Anonymous function", "Loop", "Variable"],
+        "answer": "Anonymous function"
+      },
+      {
+        "question": "*args used for?",
+        "options": ["One argument", "Multiple args", "No args", "Keyword args"],
+        "answer": "Multiple args"
+      },
+      {
+        "question": "Recursion means?",
+        "options": ["Loop", "Function calling itself", "Error", "Class"],
+        "answer": "Function calling itself"
+      }
+    ]
+  },
+  {
+    "topicId": 7,
+    "title": "Strings",
+    "quiz": [
+      {
+        "question": "Strings are?",
+        "options": ["Mutable", "Immutable", "Numeric", "Boolean"],
+        "answer": "Immutable"
+      },
+      {
+        "question": "'a'*3 gives?",
+        "options": ["aaa", "a3", "Error", "None"],
+        "answer": "aaa"
+      },
+      {
+        "question": "len('abc') gives?",
+        "options": ["2", "3", "4", "1"],
+        "answer": "3"
+      },
+      {
+        "question": "Uppercase method?",
+        "options": ["upper()", "lower()", "cap()", "case()"],
+        "answer": "upper()"
+      },
+      {
+        "question": "Index starts from?",
+        "options": ["1", "0", "-1", "2"],
+        "answer": "0"
+      }
+    ]
+  },
+  {
+    "topicId": 8,
+    "title": "Lists",
+    "quiz": [
+      {
+        "question": "Lists are?",
+        "options": ["Immutable", "Mutable", "Static", "Fixed"],
+        "answer": "Mutable"
+      },
+      {
+        "question": "Add element?",
+        "options": ["add()", "append()", "insert()", "push()"],
+        "answer": "append()"
+      },
+      {
+        "question": "Remove last element?",
+        "options": ["pop()", "delete()", "remove()", "cut()"],
+        "answer": "pop()"
+      },
+      {
+        "question": "Sort list?",
+        "options": ["sort()", "order()", "arrange()", "list()"],
+        "answer": "sort()"
+      },
+      {
+        "question": "List allows?",
+        "options": ["Duplicates", "No duplicates", "Only int", "Only string"],
+        "answer": "Duplicates"
+      }
+    ]
+  },
+  {
+    "topicId": 9,
+    "title": "Tuples",
+    "quiz": [
+      {
+        "question": "Tuples are?",
+        "options": ["Mutable", "Immutable", "Dynamic", "None"],
+        "answer": "Immutable"
+      },
+      {
+        "question": "Tuple syntax?",
+        "options": ["[]", "()", "{}", "<>"],
+        "answer": "()"
+      },
+      {
+        "question": "Single tuple?",
+        "options": ["(1)", "(1,)", "[1]", "{1}"],
+        "answer": "(1,)"
+      },
+      {
+        "question": "Access tuple?",
+        "options": ["Index", "Key", "Loop only", "None"],
+        "answer": "Index"
+      },
+      {
+        "question": "Tuple faster than list?",
+        "options": ["Yes", "No", "Same", "None"],
+        "answer": "Yes"
+      }
+    ]
+  },
+  {
+    "topicId": 10,
+    "title": "Dictionaries",
+    "quiz": [
+      {
+        "question": "Dictionary stores?",
+        "options": ["Values", "Keys", "Key-Value", "None"],
+        "answer": "Key-Value"
+      },
+      {
+        "question": "Keys must be?",
+        "options": ["Unique", "Duplicate", "List", "None"],
+        "answer": "Unique"
+      },
+      {
+        "question": "Access value?",
+        "options": ["d[key]", "d.value", "d()", "d[]"],
+        "answer": "d[key]"
+      },
+      {
+        "question": "Get safe value?",
+        "options": ["get()", "fetch()", "value()", "safe()"],
+        "answer": "get()"
+      },
+      {
+        "question": "Remove key?",
+        "options": ["delete", "del", "remove", "pop"],
+        "answer": "del"
+      }
+    ]
+  },
+  {
+    "topicId": 11,
+    "title": "File Handling",
+    "quiz": [
+      {
+        "question": "Open file?",
+        "options": ["open()", "file()", "read()", "write()"],
+        "answer": "open()"
+      },
+      {
+        "question": "Read file?",
+        "options": ["read()", "write()", "open()", "close()"],
+        "answer": "read()"
+      },
+      {
+        "question": "Write mode?",
+        "options": ["r", "w", "a", "x"],
+        "answer": "w"
+      },
+      {
+        "question": "Best practice?",
+        "options": ["close()", "with", "read", "write"],
+        "answer": "with"
+      },
+      {
+        "question": "Append mode?",
+        "options": ["a", "w", "r", "x"],
+        "answer": "a"
+      }
+    ]
+  },
+  {
+    "topicId": 12,
+    "title": "Exception Handling",
+    "quiz": [
+      {
+        "question": "Error handling block?",
+        "options": ["try", "loop", "if", "def"],
+        "answer": "try"
+      },
+      {
+        "question": "Catch error?",
+        "options": ["except", "catch", "error", "handle"],
+        "answer": "except"
+      },
+      {
+        "question": "Always executes?",
+        "options": ["finally", "try", "except", "else"],
+        "answer": "finally"
+      },
+      {
+        "question": "Raise error?",
+        "options": ["throw", "raise", "error", "except"],
+        "answer": "raise"
+      },
+      {
+        "question": "ZeroDivisionError is?",
+        "options": ["Runtime error", "Syntax", "Logical", "Compile"],
+        "answer": "Runtime error"
+      }
+    ]
+  },
+  {
+    "topicId": 13,
+    "title": "OOP",
+    "quiz": [
+      {
+        "question": "Class keyword?",
+        "options": ["class", "def", "obj", "init"],
+        "answer": "class"
+      },
+      {
+        "question": "Object created by?",
+        "options": ["Class()", "def()", "obj()", "new"],
+        "answer": "Class()"
+      },
+      {
+        "question": "__init__ is?",
+        "options": ["Constructor", "Loop", "Function", "Variable"],
+        "answer": "Constructor"
+      },
+      {
+        "question": "Inheritance means?",
+        "options": ["Reuse", "Delete", "Loop", "Error"],
+        "answer": "Reuse"
+      },
+      {
+        "question": "Encapsulation means?",
+        "options": ["Hide data", "Loop", "Print", "Call"],
+        "answer": "Hide data"
+      }
+    ]
+  },
+  {
+    "topicId": 14,
+    "title": "Advanced Python",
+    "quiz": [
+      {
+        "question": "List comprehension?",
+        "options": ["Short loop", "Class", "Function", "Error"],
+        "answer": "Short loop"
+      },
+      {
+        "question": "Generator uses?",
+        "options": ["yield", "return", "break", "pass"],
+        "answer": "yield"
+      },
+      {
+        "question": "Decorator modifies?",
+        "options": ["Function", "Loop", "Class", "Variable"],
+        "answer": "Function"
+      },
+      {
+        "question": "map() does?",
+        "options": ["Apply function", "Loop", "Sort", "Filter"],
+        "answer": "Apply function"
+      },
+      {
+        "question": "zip() used for?",
+        "options": ["Combine", "Sort", "Loop", "Split"],
+        "answer": "Combine"
+      }
+    ]
+  }
+]
