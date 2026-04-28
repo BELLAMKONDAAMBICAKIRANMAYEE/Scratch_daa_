@@ -76,7 +76,18 @@ function Navbar({ toggleSidebar }) {
 
 /* ===== MOBILE VIEW ===== */
 @media (max-width: 768px) {
-
+.navbar {
+  height: 60px;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
   .nav-links {
     display: none; /* hide desktop links */
   }

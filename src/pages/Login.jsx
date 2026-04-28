@@ -153,7 +153,7 @@ a:hover {
 @media (max-width: 480px) {
   form {
     width: 300px;
-  max-width: 85%;
+  max-width: 90%;
     padding: 20px;
     border-radius: 10px;
   }
