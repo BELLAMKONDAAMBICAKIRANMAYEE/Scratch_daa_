@@ -84,3 +84,52 @@ body {
     #2563eb
   );
 }
+
+.quote-box {
+  background: #111827 !important;
+  color: #fff;
+  border: 1px solid #22c55e;
+  border-radius: 15px;
+  animation: fadeSlide 1s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.quote-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.quote-box i {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #22c55e;
+  animation:
+    typing 4s steps(60, end),
+    blink 0.7s infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}

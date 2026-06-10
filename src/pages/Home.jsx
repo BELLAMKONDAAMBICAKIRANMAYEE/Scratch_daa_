@@ -28,11 +28,9 @@ function Home() {
           Python Learning with Scratch_daa.. 😎
         </h1>
 
-        {/* Quote */}
-        <div className="alert alert-dark text-center shadow-sm mb-5">
-          <i>"{texts[quoteIndex]}"</i>
-        </div>
-
+     <div className="quote-box alert alert-dark text-center shadow-sm mb-5">
+  <i>"{texts[quoteIndex]}"</i>
+</div>
         {/* Cards */}
         <div className="row g-4 justify-content-center">
 
