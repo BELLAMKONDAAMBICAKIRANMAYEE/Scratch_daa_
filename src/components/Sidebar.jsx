@@ -1,6 +1,12 @@
 import data from "../data/syllabus.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import {
+  FaBook,
+  FaLayerGroup,
+  FaAngleLeft,
+  FaAngleRight,
+} from "react-icons/fa";
 
 function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
@@ -8,12 +14,10 @@ function Sidebar({ isOpen, setIsOpen }) {
 
   const [openTopicId, setOpenTopicId] = useState(null);
 
-  // Extract URL params
   const pathParts = location.pathname.split("/");
   const topicId = pathParts[2];
   const subId = pathParts[3];
 
-  // Auto-open topic
   useEffect(() => {
     if (topicId) {
       setOpenTopicId(Number(topicId));
@@ -25,44 +29,102 @@ function Sidebar({ isOpen, setIsOpen }) {
   };
 
   return (
-    <div className={`sidebar ${isOpen ? "expanded" : "collapsed"}`}>
+    <div
+      className={`bg-dark text-light position-fixed h-100 shadow ${
+        isOpen ? "d-block" : "d-none d-md-block"
+      }`}
+      style={{
+        width: isOpen ? "280px" : "70px",
+        transition: "0.3s",
+        overflowY: "auto",
+        zIndex: 1050,
+      }}
+    >
+    <div className="p-3 border-bottom">
+  <button
+    className="btn btn-outline-success w-100 d-flex align-items-center justify-content-center gap-2"
+    onClick={() => setIsOpen(!isOpen)}
+  >
+    {isOpen ? (
+      <>
+        <FaAngleLeft />
+        Coding Topics
+      </>
+    ) : (
+      <>
+       <i class="fa-solid fa-arrow-right"></i>
+        
+      </>
+    )}
+  </button>
+</div>
 
-      {/* Toggle */}
-      <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? "⬅" : "➡"}
-      </button>
+<div className="p-3">
+  <h5 className="text-success d-flex align-items-center gap-2 mb-0">
+    {isOpen ? (
+      <>
+        <FaLayerGroup />
+        Topics
+      </>
+    ) : (
+      <FaBook />
+    )}
+  </h5>
+</div>
+      {/* Topics */}
+      <div className="px-2">
 
-      <h3>{isOpen ? "📚 Topics" : "📂"}</h3>
+        {data.topics.map((t) => (
+          <div key={t.id} className="mb-3">
 
-      {data.topics.map((t) => (
-        <div key={t.id} className="sidebar-item">
+            {/* Topic Header */}
+            <button
+              className="btn btn-dark w-100 text-start"
+              onClick={() => toggleTopic(t.id)}
+            >
+              {isOpen ? (
+                <>
+                  {t.title}
+                  <span className="float-end">
+                    {openTopicId === t.id ? "▲" : "▼"}
+                  </span>
+                </>
+              ) : (
+                "•"
+              )}
+            </button>
 
-          {/* Topic */}
-          <p className="topic-title" onClick={() => toggleTopic(t.id)}>
-            {isOpen ? t.title : "•"}
-            {isOpen && (openTopicId === t.id ? " ▲" : " ▼")}
-          </p>
+            {/* Subtopics */}
+            {isOpen && openTopicId === t.id && (
+              <ul className="list-group mt-2">
 
-          {/* Subtopics */}
-          {isOpen && openTopicId === t.id && (
-            <ul className="subtopic-list">
-              {t.subtopics.map((sub) => (
-                <li
-                  key={sub.id}
-                  className={String(sub.id) === subId ? "active-subtopic" : ""}
-                  onClick={() => {
-                    navigate(`/topic/${t.id}/${sub.id}`);
-                    setIsOpen(false); // 🔥 close on mobile
-                  }}
-                >
-                  {sub.title}
-                </li>
-              ))}
-            </ul>
-          )}
+                {t.subtopics.map((sub) => (
+                  <li
+                    key={sub.id}
+                    className={`list-group-item list-group-item-action ${
+                      String(sub.id) === subId
+                        ? "active"
+                        : ""
+                    }`}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigate(`/topic/${t.id}/${sub.id}`);
+                      if (window.innerWidth < 768) {
+                        setIsOpen(false);
+                      }
+                    }}
+                  >
+                    {sub.title}
+                  </li>
+                ))}
 
-        </div>
-      ))}
+              </ul>
+            )}
+
+          </div>
+        ))}
+
+      </div>
     </div>
   );
 }

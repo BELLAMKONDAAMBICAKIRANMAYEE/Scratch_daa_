@@ -7,9 +7,10 @@ import TopicDetail from "./pages/TopicDetails";
 import QuizPage from "./pages/QuizPage";
 import SubtopicDetail from "./pages/SubtopicDetails";
 import Coding from "./pages/Coding";
+import CodingTopics from "./pages/CodingTopics";
+
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import CodingTopics from "./pages/CodingTopics";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -19,7 +20,6 @@ function Layout() {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
 
-  // ✅ FIXED
   const isAuthPage =
     location.pathname.startsWith("/login") ||
     location.pathname.startsWith("/signup");
@@ -27,56 +27,113 @@ function Layout() {
   return (
     <div className="app-layout">
 
+      {/* Overlay only on mobile when sidebar is open */}
       {!isAuthPage && isOpen && (
-        <div className="overlay" onClick={() => setIsOpen(false)}></div>
+        <div
+          className="overlay"
+          onClick={() => setIsOpen(false)}
+        ></div>
       )}
 
+      {/* Sidebar */}
       {!isAuthPage && (
-        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Sidebar
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       )}
 
-      <div className="main-area">
+      {/* Main Area */}
+      <div
+        className={`main-area ${
+          isAuthPage
+            ? ""
+            : isOpen
+            ? "sidebar-open"
+            : "sidebar-closed"
+        }`}
+      >
+        {/* Navbar */}
         {!isAuthPage && (
-          <Navbar toggleSidebar={() => setIsOpen(!isOpen)} />
+          <Navbar
+            toggleSidebar={() => setIsOpen(!isOpen)}
+          />
         )}
 
+        {/* Page Content */}
         <div className="content">
           <Routes>
 
-            {/* ✅ Redirect root */}
+            {/* Redirect */}
             <Route path="/" element={<Navigate to="/signup" />} />
 
+            {/* Auth Pages */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
-            {/* 🔒 Protected */}
-            <Route path="/home" element={
-              <ProtectedRoute><Home /></ProtectedRoute>
-            } />
+            {/* Protected Routes */}
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/topics" element={
-              <ProtectedRoute><Topics /></ProtectedRoute>
-            } />
+            <Route
+              path="/topics"
+              element={
+                <ProtectedRoute>
+                  <Topics />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/topic/:id" element={
-              <ProtectedRoute><TopicDetail /></ProtectedRoute>
-            } />
+            <Route
+              path="/topic/:id"
+              element={
+                <ProtectedRoute>
+                  <TopicDetail />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/topic/:topicId/:subId" element={
-              <ProtectedRoute><SubtopicDetail /></ProtectedRoute>
-            } />
+            <Route
+              path="/topic/:topicId/:subId"
+              element={
+                <ProtectedRoute>
+                  <SubtopicDetail />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/quiz/:id" element={
-              <ProtectedRoute><QuizPage /></ProtectedRoute>
-            } />
+            <Route
+              path="/quiz/:id"
+              element={
+                <ProtectedRoute>
+                  <QuizPage />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/coding" element={
-              <ProtectedRoute><CodingTopics /></ProtectedRoute>
-            } />
+            <Route
+              path="/coding"
+              element={
+                <ProtectedRoute>
+                  <CodingTopics />
+                </ProtectedRoute>
+              }
+            />
 
-            <Route path="/coding/:id" element={
-              <ProtectedRoute><Coding /></ProtectedRoute>
-            } />
+            <Route
+              path="/coding/:id"
+              element={
+                <ProtectedRoute>
+                  <Coding />
+                </ProtectedRoute>
+              }
+            />
 
           </Routes>
         </div>

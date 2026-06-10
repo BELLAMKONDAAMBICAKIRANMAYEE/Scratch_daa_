@@ -1,188 +1,99 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+const [showPassword, setShowPassword] = useState(false);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  try {
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/auth/signup`,
+      form
+    );
 
-    try {
-      await axios.post( `${import.meta.env.VITE_API_URL}/api/auth/signup`, form);
+    toast.success("Signup successful!");
 
-      setMsg("✅ Signup successful");
-      navigate("/login"); // 👉 go to login
-    } catch (err) {
-      setMsg(err.response?.data?.msg || "❌ Error");
-    }
-  };
-
+    setTimeout(() => {
+      navigate("/login");
+    }, 1500);
+  } catch (err) {
+    toast.error(err.response?.data?.msg || "Something went wrong");
+  }
+};
   return (
-    <form onSubmit={handleSubmit}>
-      <style>
-        {
-          `
-          /* ===== GLOBAL ===== */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a; /* dark navy */
-  display: flex;
-  
-  align-items: center;
-  min-height: 100vh;
-}
+   <div
+  className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
+  style={{ background: "#0f172a" }}
+>
+  <ToastContainer position="top-right" autoClose={2000} theme="dark" />
 
-/* ===== FORM ===== */
-form {
-  width: 700px;
-  max-width: 95%; /* 🔥 makes it responsive */
-  padding: 30px;
+  <form
+    onSubmit={handleSubmit}
+    className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 p-4 rounded shadow"
+    style={{ background: "#111827" }}
+  >
+    <h2 className="text-center text-success mb-4">Signup</h2>
 
-  background: #111827; /* dark card */
-  border-radius: 12px;
+    <input
+      className="form-control mb-3"
+      placeholder="Name"
+      onChange={(e) =>
+        setForm({ ...form, name: e.target.value })
+      }
+    />
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    <input
+      className="form-control mb-3"
+      placeholder="Email"
+      onChange={(e) =>
+        setForm({ ...form, email: e.target.value })
+      }
+    />
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-justify-content:center;
-  animation: fadeIn 0.6s ease;
-}
-
-/* ===== HEADING ===== */
-h2 {
-  color: #22c55e; /* green */
-  margin-bottom: 20px;
-}
-
-/* ===== INPUT ===== */
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-
-  border: 1px solid #374151;
-  border-radius: 8px;
-
-  background: #020617;
-  color: white;
-
-  transition: 0.3s;
-}
-
-input::placeholder {
-  color: #9ca3af;
-}
-
-/* Focus */
-input:focus {
-  border-color: #22c55e;
-  box-shadow: 0 0 8px rgba(34,197,94,0.5);
-  outline: none;
-}
-
-/* ===== BUTTON ===== */
-.hi {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #22c55e;
-  color: black;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.hi:hover {
-  background: #16a34a;
-  transform: translateY(-2px);
-}
-
-.hi:active {
-  transform: scale(0.96);
-}
-
-/* ===== TEXT ===== */
-p {
-  color: #d1d5db;
-}
-
-/* ===== LINK ===== */
-a {
-  color: #22c55e;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ===== MOBILE FIXES ===== */
-@media (max-width: 480px) {
-  form {
-  width: 300px;
-  max-width: 90%;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top:-10%;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  input {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .hi {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-  from {
-  
-    opacity: 0;
-    transform: translateY(-15px);
-    
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}`
+    {/* Password Input */}
+    <div className="position-relative mb-3">
+      <input
+        type={showPassword ? "text" : "password"}
+        className="form-control pe-5"
+        placeholder="Password"
+        onChange={(e) =>
+          setForm({ ...form, password: e.target.value })
         }
-      </style>
-      <h2>Signup</h2>
+      />
 
-      {msg && <p>{msg}</p>}
+      <span
+        className="position-absolute top-50 end-0 translate-middle-y me-3"
+        style={{ cursor: "pointer", color: "#6c757d" }}
+        onClick={() => setShowPassword(!showPassword)}
+      >
+        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      </span>
+    </div>
 
-      <input placeholder="Name" onChange={e => setForm({...form, name: e.target.value})} />
-      <input placeholder="Email" onChange={e => setForm({...form, email: e.target.value})} />
-      <input type="password" placeholder="Password" onChange={e => setForm({...form, password: e.target.value})} />
+    <button className="btn btn-success w-100 mb-3">
+      Signup
+    </button>
 
-      <button className="hi">Signup</button>
-
-      {/* 🔗 Login link */}
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </form>
+    <p className="text-center text-light mb-0">
+      Already have an account?{" "}
+      <Link
+        to="/login"
+        className="text-success text-decoration-none fw-bold"
+      >
+        Login
+      </Link>
+    </p>
+  </form>
+</div>
   );
 }
 

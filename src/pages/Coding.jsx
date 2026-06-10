@@ -16,7 +16,6 @@ function Coding() {
   const [showSolution, setShowSolution] = useState(false);
   const [showHints, setShowHints] = useState(false);
 
-  // 🔁 Reset when topic changes
   useEffect(() => {
     setCurrentIndex(0);
     setShowSolution(false);
@@ -24,18 +23,25 @@ function Coding() {
   }, [id]);
 
   if (!topicData || topicData.questions.length === 0) {
-    return <h2>⚠️ No Coding Questions Available</h2>;
+    return (
+      <div
+        className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
+        style={{ background: "#0f172a" }}
+      >
+        <h2 className="text-warning">
+          ⚠️ No Coding Questions Available
+        </h2>
+      </div>
+    );
   }
 
   const total = topicData.questions.length;
   const currentQuestion = topicData.questions[currentIndex];
 
-  // ✅ NEXT (Question first → then Topic)
   const handleNext = () => {
     if (currentIndex < total - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      // Move to next topic
       const nextTopic = codingQuestions.find(
         (item) => item.topicId === currentId + 1
       );
@@ -45,16 +51,14 @@ function Coding() {
       }
     }
 
-    setShowSolution(false);
     setShowHints(false);
+    setShowSolution(false);
   };
 
-  // ✅ PREVIOUS (Question first → then Topic)
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     } else {
-      // Move to previous topic
       const prevTopic = codingQuestions.find(
         (item) => item.topicId === currentId - 1
       );
@@ -64,78 +68,160 @@ function Coding() {
       }
     }
 
-    setShowSolution(false);
     setShowHints(false);
+    setShowSolution(false);
   };
 
   return (
-    <div className="container">
-      <style>
-        {`
-        .code-box { background: #222; color: #0f0; padding: 10px; border-radius: 5px; white-space: pre-wrap; }
-        .solution-box { background: #111; color: #00ffcc; padding: 10px; border-radius: 5px; white-space: pre-wrap; }
-        .hint-box { background: #1a1a1a; color: #ffd700; padding: 10px; border-radius: 5px; }
-        .badge { padding: 4px 10px; border-radius: 10px; margin-left: 10px; font-size: 12px; background: #444; color: white; }
-        pre { font-size: 18px; }
-        button { margin: 5px; }
-      `}
-      </style>
+    <div
+      className="container-fluid py-5"
+      style={{ background: "#0f172a", minHeight: "100vh" }}
+    >
+      <div className="container">
 
-      <h2>💻 Coding Practice</h2>
+        {/* Title */}
+        <h1 className="text-center text-success fw-bold mb-4">
+          💻 Coding Practice
+        </h1>
 
-      {/* ✅ Topic + Question Info */}
-      <p>
-        Topic {currentId} | Question { currentId} {/*/ {total}*/}
-      </p>
+        {/* Question Card */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
 
-      <h3>
-        {/* Q{currentIndex + 1}. {currentQuestion.title} */}
-        Q{currentId}. {currentQuestion.title}
-        <span className="badge">{currentQuestion.difficulty}</span>
-      </h3>
+            <p className="text-secondary">
+              Topic {currentId} | Question {currentIndex + 1} / {total}
+            </p>
 
-      <p>{currentQuestion.problem}</p>
+            <h3 className="mb-3">
+              Q{currentIndex + 1}. {currentQuestion.title}
 
-      <h4>Starter Code:</h4>
-      <pre className="code-box">{currentQuestion.starterCode}</pre>
- <pre className="code-box">{currentQuestion.examples}</pre>
+              <span className="badge bg-primary ms-3">
+                {currentQuestion.difficulty}
+              </span>
+            </h3>
 
-      {/* Buttons */}
-      <div>
-        <button onClick={() => setShowHints(!showHints)}>
-          {showHints ? "Hide Hints" : "Show Hints"}
-        </button>
+            <p>{currentQuestion.problem}</p>
 
-        <button onClick={() => setShowSolution(!showSolution)}>
-          {showSolution ? "Hide Solution" : "Show Solution"}
-        </button>
-      </div>
-
-      {/* Hints */}
-      {showHints && (
-        <div className="hint-box">
-          <ul>
-            {currentQuestion.hints.map((h, i) => (
-              <li key={i}>💡 {h}</li>
-            ))}
-          </ul>
+          </div>
         </div>
-      )}
 
-      {/* Solution */}
-      {showSolution && (
-        <pre className="solution-box">{currentQuestion.solution}</pre>
-      )}
+        {/* Starter Code */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
 
-      {/* Navigation */}
-      <div style={{ marginTop: "15px" }}>
-        <button onClick={handlePrev}>
-          ⬅ Previous
-        </button>
+            <h4>🚀 Starter Code</h4>
 
-        <button onClick={handleNext}>
-          Next ➡
-        </button>
+            <pre
+              className="p-3 rounded"
+              style={{
+                background: "#1e293b",
+                color: "#22c55e",
+                overflowX: "auto",
+              }}
+            >
+              {currentQuestion.starterCode}
+            </pre>
+
+          </div>
+        </div>
+
+        {/* Examples */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
+
+            <h4>📝 Examples</h4>
+
+            <pre
+              className="p-3 rounded"
+              style={{
+                background: "#1e293b",
+                color: "#facc15",
+                overflowX: "auto",
+              }}
+            >
+              {currentQuestion.examples}
+            </pre>
+
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="d-flex flex-wrap gap-3 mb-4">
+
+          <button
+            className="btn btn-warning"
+            onClick={() => setShowHints(!showHints)}
+          >
+            {showHints ? "Hide Hints" : "Show Hints"}
+          </button>
+
+          <button
+            className="btn btn-info"
+            onClick={() => setShowSolution(!showSolution)}
+          >
+            {showSolution ? "Hide Solution" : "Show Solution"}
+          </button>
+
+        </div>
+
+        {/* Hints */}
+        {showHints && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+
+              <h4>💡 Hints</h4>
+
+              <ul>
+                {currentQuestion.hints.map((hint, i) => (
+                  <li key={i}>{hint}</li>
+                ))}
+              </ul>
+
+            </div>
+          </div>
+        )}
+
+        {/* Solution */}
+        {showSolution && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+
+              <h4>✅ Solution</h4>
+
+              <pre
+                className="p-3 rounded"
+                style={{
+                  background: "#111827",
+                  color: "#00ffcc",
+                  overflowX: "auto",
+                }}
+              >
+                {currentQuestion.solution}
+              </pre>
+
+            </div>
+          </div>
+        )}
+
+        {/* Navigation */}
+        <div className="d-flex justify-content-between">
+
+          <button
+            className="btn btn-secondary"
+            onClick={handlePrev}
+          >
+            ⬅ Previous
+          </button>
+
+          <button
+            className="btn btn-success"
+            onClick={handleNext}
+          >
+            Next ➡
+          </button>
+
+        </div>
+
       </div>
     </div>
   );

@@ -4,132 +4,192 @@ import data from "../data/syllabus.json";
 function TopicDetail() {
   const { id } = useParams();
 
-  // ✅ FIX: access topics array
   const topic = data.topics.find((t) => t.id == id);
 
-  if (!topic) return <h2>Topic not found</h2>;
+  if (!topic) {
+    return (
+      <div
+        className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
+        style={{ background: "#0f172a" }}
+      >
+        <h2 className="text-danger">Topic not found</h2>
+      </div>
+    );
+  }
 
   return (
-    <div className="container">
+    <div
+      className="container-fluid py-5"
+      style={{ background: "#0f172a", minHeight: "100vh" }}
+    >
+      <div className="container">
 
-      {/* TITLE */}
-      <h1>{topic.title}</h1>
+        {/* Title */}
+        <h1 className="text-success text-center fw-bold mb-5">
+          {topic.title}
+        </h1>
 
-      {/* DEFINITION */}
-      <section className="card">
-        <h2>📘 Definition</h2>
-        <p>{topic.definition}</p>
-      </section>
+        {/* Definition */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
+            <h3>📘 Definition</h3>
+            <p>{topic.definition}</p>
+          </div>
+        </div>
 
-      {/* FLOW */}
-      <section className="card">
-        <h2>🔄 Flow</h2>
-        <p>{topic.flow}</p>
-      </section>
+        {/* Flow */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
+            <h3>🔄 Flow</h3>
+            <p>{topic.flow}</p>
+          </div>
+        </div>
 
-      {/* RULES */}
-      {topic.rules?.length > 0 && (
-        <section className="card">
-          <h2>📏 Rules</h2>
-          <ul>
-            {topic.rules.map((rule, i) => (
-              <li key={i}>{rule}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {/* Rules */}
+        {topic.rules?.length > 0 && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>📏 Rules</h3>
 
-      {/* FLOWCHARTS */}
-      {topic.flowcharts?.length > 0 && (
-        <section className="card">
-          <h2>📊 Flowcharts</h2>
-          <ul>
-            {topic.flowcharts.map((f, i) => (
-              <li key={i}>{f}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* TABLES */}
-      {topic.tables?.length > 0 &&
-        topic.tables.map((table, index) => (
-          <section className="card" key={index}>
-            <h2>📋 {table.title}</h2>
-            <table border="1" cellPadding="8">
-              <thead>
-                <tr>
-                  {table.headers?.map((col, i) => (
-                    <th key={i}>{col}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {table.rows?.map((row, i) => (
-                  <tr key={i}>
-                    {row.map((cell, j) => (
-                      <td key={j}>{cell}</td>
-                    ))}
-                  </tr>
+              <ul>
+                {topic.rules.map((rule, i) => (
+                  <li key={i}>{rule}</li>
                 ))}
-              </tbody>
-            </table>
-          </section>
-        ))}
+              </ul>
+            </div>
+          </div>
+        )}
 
-      {/* EXAMPLES */}
-      {topic.examples?.length > 0 && (
-        <section className="card">
-          <h2>💻 Examples</h2>
-          {topic.examples.map((ex, i) => (
-            <div key={i}>
-              <pre style={{ background: "#eee", padding: "10px" }}>
-                {ex.code}
-              </pre>
-              <p>{ex.explanation}</p>
+        {/* Flowcharts */}
+        {topic.flowcharts?.length > 0 && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>📊 Flowcharts</h3>
+
+              <ul>
+                {topic.flowcharts.map((flow, i) => (
+                  <li key={i}>{flow}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Tables */}
+        {topic.tables?.length > 0 &&
+          topic.tables.map((table, index) => (
+            <div
+              className="card bg-dark text-light shadow mb-4"
+              key={index}
+            >
+              <div className="card-body">
+
+                <h3>📋 {table.title}</h3>
+
+                <div className="table-responsive">
+                  <table className="table table-bordered table-striped table-dark">
+                    <thead>
+                      <tr>
+                        {table.headers?.map((head, i) => (
+                          <th key={i}>{head}</th>
+                        ))}
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {table.rows?.map((row, i) => (
+                        <tr key={i}>
+                          {row.map((cell, j) => (
+                            <td key={j}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
             </div>
           ))}
-        </section>
-      )}
 
-      {/* IMPORTANT NOTES */}
-      {topic.important_notes?.length > 0 && (
-        <section className="card">
-          <h2>⚠️ Important Notes</h2>
-          <ul>
-            {topic.important_notes.map((note, i) => (
-              <li key={i}>{note}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {/* Examples */}
+        {topic.examples?.length > 0 && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>💻 Examples</h3>
 
-      {/* CONCEPT (SAFE) */}
-      {topic.concept && (
-        <section className="card">
-          <h2>🧠 Concept</h2>
-          <p>{topic.concept}</p>
-        </section>
-      )}
+              {topic.examples.map((ex, i) => (
+                <div key={i} className="mb-4">
 
-      {/* SUMMARY */}
-      <section className="card">
-        <h2>📌 Summary</h2>
-        <p>{topic.summary}</p>
-      </section>
+                  <pre
+                    className="p-3 rounded"
+                    style={{
+                      background: "#1e293b",
+                      color: "#22c55e",
+                      overflowX: "auto",
+                    }}
+                  >
+                    {ex.code}
+                  </pre>
 
-      {/* REAL-TIME */}
-      {topic.real_time_examples?.length > 0 && (
-        <section className="card">
-          <h2>🌍 Real-Time Examples</h2>
-          <ul>
-            {topic.real_time_examples.map((ex, i) => (
-              <li key={i}>{ex}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+                  <p>{ex.explanation}</p>
 
+                  <hr />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Important Notes */}
+        {topic.important_notes?.length > 0 && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>⚠️ Important Notes</h3>
+
+              <ul>
+                {topic.important_notes.map((note, i) => (
+                  <li key={i}>{note}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Concept */}
+        {topic.concept && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>🧠 Concept</h3>
+              <p>{topic.concept}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Summary */}
+        <div className="card bg-dark text-light shadow mb-4">
+          <div className="card-body">
+            <h3>📌 Summary</h3>
+            <p>{topic.summary}</p>
+          </div>
+        </div>
+
+        {/* Real-Time Examples */}
+        {topic.real_time_examples?.length > 0 && (
+          <div className="card bg-dark text-light shadow mb-4">
+            <div className="card-body">
+              <h3>🌍 Real-Time Examples</h3>
+
+              <ul>
+                {topic.real_time_examples.map((ex, i) => (
+                  <li key={i}>{ex}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+      </div>
     </div>
   );
 }

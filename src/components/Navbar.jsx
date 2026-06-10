@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function Navbar({ toggleSidebar }) {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const name = localStorage.getItem("name");
 
@@ -14,147 +12,88 @@ function Navbar({ toggleSidebar }) {
   };
 
   return (
-    <nav className="navbar">
-      <style>
-        {
-          `/* ===== NAVBAR BASE ===== */
-.navbar {
-  height: 60px;
-  background: #111;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  gap: 15px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* Logo */
-.logo {
-  margin-right: auto;
-}
-
-/* Desktop links */
-.nav-links {
-  display: flex;
-  gap: 10px;
-}
-
-/* Right section */
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Hide mobile button on desktop */
-.mobile-menu-btn {
-  display: none;
-  font-size: 20px;
-  background: none;
-  color: white;
-}
-
-/* Mobile dropdown */
-.mobile-menu {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background: #222;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  animation: slideDown 0.3s ease;
-}
-
-.mobile-menu button {
-  margin: 5px 0;
-}
-
-/* ===== MOBILE VIEW ===== */
-@media (max-width: 768px) {
-.navbar {
-  height: 60px;
-  background: #111;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  gap: 15px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-  .nav-links {
-    display: none; /* hide desktop links */
-  }
-
-  .right-section {
-    display: none; /* hide user + logout */
-  }
-   .mobile-menu{
-   width:380px;
-   max-width:100%;
-   }  
-  .mobile-menu-btn {
-    display: block; /* show ☰ */
-    margin-left: auto;
-  }
-}
-
-/* Animation */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}`
-        }
-      </style>
-      <button onClick={toggleSidebar} title="Toggle Sidebar">
-        📁
-      </button>
-
-
-      <h3 className="logo">Scratch_Daa</h3>
-
-      {/* Desktop Menu */}
-      <div className="nav-links">
-        <button onClick={() => navigate("/home")}>Home</button>
-        <button onClick={() => navigate("/topics")}>Topics</button>
-        <button onClick={() => navigate("/coding")}>Code</button>
-      </div>
-
-      {/* Right side */}
-      <div className="right-section">
-        <span className="user">👤 {name}</span>
-        <button onClick={logout}>Logout</button>
-      </div>
-
-      {/* Mobile menu button */}
+    <nav
+      className="navbar navbar-expand-lg navbar-dark sticky-top shadow px-3"
+      style={{ backgroundColor: "#111827" }}
+    >
+      {/* Sidebar Button */}
       <button
-        className="mobile-menu-btn"
-        onClick={() => setMenuOpen(!menuOpen)}
+        className="btn btn-outline-light me-3"
+        onClick={toggleSidebar}
+        title="Toggle Sidebar"
       >
-        ☰
+        <i class="fa-solid fa-folder"></i>
       </button>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="mobile-menu">
-          <button onClick={() => navigate("/home")}>Home</button>
-          <button onClick={() => navigate("/topics")}>Topics</button>
-          <button onClick={() => navigate("/coding")}>Code</button>
-          <button onClick={logout}>Logout</button>
+      {/* Logo */}
+      <span
+        className="navbar-brand fw-bold"
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/home")}
+      >
+        Scratch_Daa
+      </span>
+
+      {/* Mobile Toggle */}
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMenu"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+
+      {/* Menu */}
+      <div className="collapse navbar-collapse" id="navbarMenu">
+        <ul className="navbar-nav me-auto">
+
+          <li className="nav-item">
+            <button
+              className="btn btn-outline-success ms-lg-3 mt-2 mt-lg-0"
+              onClick={() => navigate("/home")}
+            >
+              Home
+            </button>
+          </li>
+
+          <li className="nav-item">
+            <button
+              className="btn btn-outline-success ms-lg-2 mt-2 mt-lg-0"
+              onClick={() => navigate("/topics")}
+            >
+              Topics
+            </button>
+          </li>
+
+          <li className="nav-item">
+            <button
+              className="btn btn-outline-success ms-lg-2 mt-2 mt-lg-0"
+              onClick={() => navigate("/coding")}
+            >
+              Code
+            </button>
+          </li>
+
+        </ul>
+
+        {/* Right Section */}
+        <div className="d-flex align-items-center flex-column flex-lg-row">
+
+          <span className="text-light fw-bold me-lg-3 mb-2 mb-lg-0">
+             {name}&nbsp; <i class="fa-solid fa-circle-user"></i>
+
+          </span>
+
+          <button
+            className="btn btn-danger"
+            onClick={logout}
+          >
+            Logout
+          </button>
+
         </div>
-      )}
+      </div>
     </nav>
   );
 }
