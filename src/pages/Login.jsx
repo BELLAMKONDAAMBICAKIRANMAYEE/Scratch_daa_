@@ -41,87 +41,141 @@ function Login() {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        theme="dark"
+    <div
+  className="container-fluid min-vh-100"
+  style={{ background: "white" }}
+>
+  <style>
+    {
+      `
+      .signup-card {
+  background: rgba(17, 24, 39, .85);
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  backdrop-filter: blur(12px);
+  animation: fadeIn .8s ease;
+}
+
+.custom-input {
+  background: #1e293b !important;
+  color: white !important;
+  border: none !important;
+  transition: .3s;
+}
+
+.custom-input:focus {
+  box-shadow: 0 0 15px #22c55e;
+  transform: scale(1.02);
+}
+
+.signup-btn {
+  transition: .3s;
+}
+
+.signup-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px #22c55e;
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}`
+    }
+  </style>
+  <ToastContainer position="top-right" autoClose={2000} theme="dark" />
+
+  <div className="row min-vh-100 align-items-center">
+
+    {/* Left Side */}
+    <div className="col-lg-6 ps-5 d-none d-lg-flex justify-content-center align-items-center">
+      <img
+        src="https://images.openai.com/static-rsc-4/HpiRslb7DCzJqUgLAwdUaFH33_RHojKsesHAr_DyAmjuyKd8rsjTGz3zs5TxYtQp_Tp_UiZcJlzGgbNXxX8NyGQIkUdLtZ1DJn6erqzQGKbX3V7nA5BcY9HjnO9QNbj6YD_1phLGipTua3e8hFTy391u1y64h-JLN39xxuysL6wdFT3TK6gdml5iWkDUi-oU?purpose=inline"
+        alt="Login"
+        className="img-fluid floating"
+        style={{ maxHeight: "500px" }}
       />
+    </div>
 
-      <div
-        className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
-        style={{ background: "#0f172a" }}
+    {/* Right Side */}
+    <div className="col-lg-6 d-flex justify-content-center align-items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="signup-card p-5"
+        style={{ width: "450px" }}
       >
-        <form
-          onSubmit={handleSubmit}
-          className="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 p-4 rounded shadow"
-          style={{ background: "#111827" }}
-        >
-          <h2 className="text-center text-success mb-4">
-            Login
-          </h2>
+        <h2 className="text-center text-success mb-4">
+          Welcome Back
+        </h2>
 
-          {/* Email */}
+        <input
+          type="email"
+          className="form-control custom-input mb-3"
+          placeholder="Email"
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
+        />
+
+        <div className="position-relative mb-3">
           <input
-            type="email"
-            className="form-control mb-3"
-            placeholder="Email"
+            type={showPassword ? "text" : "password"}
+            className="form-control custom-input pe-5"
+            placeholder="Password"
             onChange={(e) =>
               setForm({
                 ...form,
-                email: e.target.value,
+                password: e.target.value,
               })
             }
           />
 
-          {/* Password */}
-          <div className="position-relative mb-3">
-            <input
-              type={showPassword ? "text" : "password"}
-              className="form-control pe-5"
-              placeholder="Password"
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  password: e.target.value,
-                })
-              }
-            />
+          <span
+            className="position-absolute top-50 end-0 translate-middle-y me-3"
+            style={{ cursor: "pointer", color: "#9ca3af" }}
+            onClick={() =>
+              setShowPassword(!showPassword)
+            }
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
-            <span
-              className="position-absolute top-50 end-0 translate-middle-y me-3"
-              style={{
-                cursor: "pointer",
-                color: "#6c757d",
-              }}
-              onClick={() =>
-                setShowPassword(!showPassword)
-              }
-            >
-              {showPassword ? (
-                <FaEyeSlash />
-              ) : (
-                <FaEye />
-              )}
-            </span>
-          </div>
+        <button className="btn btn-success w-100 signup-btn">
+          Login
+        </button>
 
-          {/* Login button */}
-          <button className="btn btn-success w-100 mb-3">
-            Login
-          </button>
+        <p className="text-center text-light mt-4">
+          Don't have an account?{" "}
+          <Link
+            to="/signup"
+            className="text-success fw-bold text-decoration-none"
+          >
+            Signup
+          </Link>
+        </p>
+      </form>
+    </div>
 
-          {/* Signup link */}
-          <p className="text-center text-light mb-0">
-            Don't have an account?{" "}
-            <Link
-              to="/signup"
-              className="text-success text-decoration-none fw-bold"
-            >
-              Signup
-            </Link>
-          </p>
-        </form>
-      </div>
+  </div>
+</div>
     </>
   );
 }

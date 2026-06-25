@@ -25,12 +25,17 @@ function Home() {
 
         {/* Heading */}
         <h1 className="text-center text-success fw-bold mb-4">
-          Python Learning with Scratch_daa.. 😎
+          Python Learning with Scratch_daa.. <i className="fa-brands fa-superpowers"></i>
         </h1>
 
-     <div className="quote-box alert alert-dark text-center shadow-sm mb-5">
-  <i>"{texts[quoteIndex]}"</i>
-</div>
+        {/* Quote */}
+        <div className="quote-box mb-5">
+
+          <p className="quote-text">
+            <span className="quote-icon">❝</span> {texts[quoteIndex]}  <span className="quote-icon">❞</span>
+          </p>
+
+        </div>
         {/* Cards */}
         <div className="row g-4 justify-content-center">
 

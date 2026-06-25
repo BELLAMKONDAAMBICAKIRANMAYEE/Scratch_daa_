@@ -14,20 +14,20 @@ function Navbar({ toggleSidebar }) {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark sticky-top shadow px-3"
-      style={{ backgroundColor: "#111827" }}
+      style={{ backgroundColor: "white" }}
     >
       {/* Sidebar Button */}
       <button
-        className="btn btn-outline-light me-3"
+        className="btn btn-outline-success me-3"
         onClick={toggleSidebar}
         title="Toggle Sidebar"
       >
-        <i class="fa-solid fa-folder"></i>
+        <i className="fa-solid fa-folder"></i>
       </button>
 
       {/* Logo */}
       <span
-        className="navbar-brand fw-bold"
+        className="navbar-brand fw-bold text-dark"
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/home")}
       >
@@ -50,7 +50,7 @@ function Navbar({ toggleSidebar }) {
 
           <li className="nav-item">
             <button
-              className="btn btn-outline-success ms-lg-3 mt-2 mt-lg-0"
+              className="btn text-success fw-bold  ms-lg-3 mt-2 mt-lg-0"
               onClick={() => navigate("/home")}
             >
               Home
@@ -59,7 +59,7 @@ function Navbar({ toggleSidebar }) {
 
           <li className="nav-item">
             <button
-              className="btn btn-outline-success ms-lg-2 mt-2 mt-lg-0"
+              className="btn text-success fw-bold ms-lg-2 mt-2 mt-lg-0"
               onClick={() => navigate("/topics")}
             >
               Topics
@@ -68,7 +68,7 @@ function Navbar({ toggleSidebar }) {
 
           <li className="nav-item">
             <button
-              className="btn btn-outline-success ms-lg-2 mt-2 mt-lg-0"
+              className="btn text-success fw-bold ms-lg-2 mt-2 mt-lg-0"
               onClick={() => navigate("/coding")}
             >
               Code
@@ -80,8 +80,8 @@ function Navbar({ toggleSidebar }) {
         {/* Right Section */}
         <div className="d-flex align-items-center flex-column flex-lg-row">
 
-          <span className="text-light fw-bold me-lg-3 mb-2 mb-lg-0">
-             {name}&nbsp; <i class="fa-solid fa-circle-user"></i>
+          <span className="text-dark fw-bold me-lg-3 mb-2 mb-lg-0">
+             {name}&nbsp; <i className="fa-solid fa-circle-user"></i>
 
           </span>
 

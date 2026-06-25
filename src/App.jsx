@@ -100,7 +100,7 @@ function Layout() {
             />
 
             <Route
-              path="/topic/:topicId/:subId"
+              path="/topic/:subId"
               element={
                 <ProtectedRoute>
                   <SubtopicDetail />
